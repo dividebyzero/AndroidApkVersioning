@@ -1,0 +1,41 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <!--
+    This jelly script is used for per-project configuration.
+
+    See global.jelly for a general discussion about jelly script.
+  -->
+
+  <!--
+    Creates a text field that shows the value of the "name" property.
+    When submitted, it will be passed to the corresponding constructor parameter.
+  -->
+    <f:entry title="Name" field="name">
+    <f:textbox />
+    </f:entry>
+
+    <f:entry title="Read version number from file" field="readVersionFromFileEnabled"
+      description="Check if the version number is saved into a file">
+      <f:checkbox />
+    </f:entry>
+    <f:entry title="Auto-Increment" field="autoIncrementEnabled"
+      description="Increment version number saved into file">
+      <f:checkbox />
+    </f:entry>
+    <f:entry title="File Path" field="filePath">
+    <f:textbox />
+    </f:entry>
+
+    <f:entry title="read version number from Environment Var"  >
+    <f:textbox field="versionNumberEnvironmentVariable" default="${descriptor.versionNumberEnvironmentVariable}" />
+    </f:entry>
+
+
+    <f:entry title="read version name from Environment Var" >
+      <f:textbox field="versionNameEnvironmentVariable" default="${descriptor.versionNameEnvironmentVariable}"/>
+    </f:entry>
+
+
+    <f:entry title="relative path to AndroidManifest.xml" >
+      <f:textbox field="manifestPath" default="${descriptor.manifestPath}"/>
+    </f:entry>
+</j:jelly>
