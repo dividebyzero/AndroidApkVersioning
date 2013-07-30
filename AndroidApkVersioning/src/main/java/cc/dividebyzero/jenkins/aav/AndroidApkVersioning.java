@@ -17,6 +17,7 @@ import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.QueryParameter;
 
 import javax.servlet.ServletException;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -143,7 +144,7 @@ public class AndroidApkVersioning extends Builder {
     private FilePath computeFilePath(AbstractBuild build, final String filePath){
 
         try{
-            return  build.getWorkspace().withSuffix(filePath);
+            return  build.getWorkspace().withSuffix(File.separator+filePath);
         }catch (Exception e){
             throw new RuntimeException(e);
         }
