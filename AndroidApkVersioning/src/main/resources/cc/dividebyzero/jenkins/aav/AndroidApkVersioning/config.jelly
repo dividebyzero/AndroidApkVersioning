@@ -9,20 +9,22 @@
     Creates a text field that shows the value of the "name" property.
     When submitted, it will be passed to the corresponding constructor parameter.
   -->
-    <f:entry title="Name" field="name">
-    <f:textbox />
+
+
+    <f:entry title="Read version number from file"
+      description="Check if the version number is saved into a file"
+      >
+      <f:checkbox field="readVersionFromFileEnabled" default="${descriptor.readVersionFromFileEnabled}"/>
     </f:entry>
 
-    <f:entry title="Read version number from file" field="readVersionFromFileEnabled"
-      description="Check if the version number is saved into a file">
-      <f:checkbox />
+    <f:entry title="Auto-Increment"
+      description="Increment version number saved into file"
+      >
+      <f:checkbox field="autoIncrementEnabled" default="${descriptor.autoIncrementEnabled}"/>
     </f:entry>
-    <f:entry title="Auto-Increment" field="autoIncrementEnabled"
-      description="Increment version number saved into file">
-      <f:checkbox />
-    </f:entry>
-    <f:entry title="File Path" field="filePath">
-    <f:textbox />
+
+    <f:entry title="File Path" >
+    <f:textbox field="filePath" default="${descriptor.filePath}" />
     </f:entry>
 
     <f:entry title="read version number from Environment Var"  >

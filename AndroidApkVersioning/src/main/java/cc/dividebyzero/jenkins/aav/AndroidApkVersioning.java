@@ -39,25 +39,16 @@ import java.io.IOException;
  */
 public class AndroidApkVersioning extends Builder {
 
-    private final String name;
-    private final String versionNumberEnvironmentVariable;
+
     private String versionNumberStr ="0.0.1";
     private String versionName = "unknown";
     private long versionNumber=0;
 
     // Fields in config.jelly must match the parameter names in the "DataBoundConstructor"
     @DataBoundConstructor
-    public AndroidApkVersioning(String name, String versionNumberEnvironmentVariable) {
-        this.name = name;
-        this.versionNumberEnvironmentVariable = versionNumberEnvironmentVariable;
+    public AndroidApkVersioning() {
     }
 
-    /**
-     * We'll use this from the <tt>config.jelly</tt>.
-     */
-    public String getName() {
-        return name;
-    }
 
     @Override
     public boolean perform(AbstractBuild build, Launcher launcher, BuildListener listener) {
@@ -240,17 +231,6 @@ public class AndroidApkVersioning extends Builder {
 
         @java.lang.Override
         public Builder newInstance(StaplerRequest req, JSONObject formData) throws FormException {
-            configure(req,formData);
-            return super.newInstance(req, formData);
-        }
-
-        @Override
-        public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
-
-
-            // To persist global configuration information,
-            // set that to properties and call save().
-
 
             readVersionFromFileEnabled = formData.getBoolean("readVersionFromFileEnabled");
             filePath = formData.getString("filePath");
@@ -263,6 +243,16 @@ public class AndroidApkVersioning extends Builder {
             manifestPath = formData.getString("manifestPath");
 
             save();
+
+
+            return super.newInstance(req, formData);
+        }
+
+        @Override
+        public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
+
+            //configure is only for GLOBAL system wide options, not build step stuff.
+
             return super.configure(req,formData);
         }
 
